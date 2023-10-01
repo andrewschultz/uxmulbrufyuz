@@ -6,11 +6,15 @@ release along with an interpreter.
 
 release along with cover art.
 
+the release number is 2.
+
 volume headers
 
-include trivial niceties by andrew schultz.
+include Trivial Niceties by Andrew Schultz.
 
-include basic screen effects by emily short.
+include Old School Verb Total Carnage by Andrew Schultz.
+
+include basic screen effects by Emily Short.
 
 paths is a number that varies.
 
