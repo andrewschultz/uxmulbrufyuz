@@ -86,7 +86,9 @@ rule for supplying a missing noun when entering:
 
 book thinking
 
-instead of thinking:
+the block thinking rule is not listed in any rulebook.
+
+check thinking:
 	if location of player is solved, say "You need to move on!" instead;
 	if player is in Aphafaja, say "You need to acclimate yourself...or something." instead;
 	if player is in Ebekelmenc, say "There must be several ways to get rid of things." instead;
@@ -131,7 +133,7 @@ check waiting:
 			say "Waiting only works in Uxmulbrufyuz. You now solve a room immediately.";
 	if location of player is solved, say "You need to get a move on!" instead;
 	if player is in Aphafaja, say "Apathy!" instead;
-	if player is in Ebekelmenc, say "Effect: engender eventless evenness." instead; [okdup]
+	if player is in Ebekelmenc, say "Effect: engender event-less evenness." instead; [okdup]
 	if player is in Igwivriqi, say "Idling? Insipid!" instead;
 	if player is in Uxmulbrufyuz, say "Up! Rush!" instead;
 
@@ -139,15 +141,23 @@ book taking
 
 book singing
 
-instead of singing:
+the block singing rule is not listed in any rulebook.
+
+check singing:
 	if player is in Ebekelmenc, say "Elegy, esthete? Elsewhere!" instead;
-	continue the action;
+	if player is in Aphafaja, say "ABBA?" instead;
+	if player is in Uxmulbrufyuz, say "Uhh...?" instead;
+	if player is in Igwivriqi, say "Singing! Singing!" instead;
+	say "Yoko Ono?!" instead;
 
 book cussing
 
-instead of swearing mildly, try swearing obscenely instead;
+the block swearing mildly rule is not listed in any rulebook.
+the block swearing obscenely rule is not listed in any rulebook.
 
-instead of swearing obscenely:
+check swearing mildly: try swearing obscenely instead;
+
+check swearing obscenely:
 	if player is in Aphafaja, say "Aghast!" instead;
 	if player is in Ebekelmenc, say "Excess! Excrement!" instead;
 	if player is in Igwivriqi, say "Impish incivility, ickily!" instead;
@@ -156,7 +166,9 @@ instead of swearing obscenely:
 
 book smelling
 
-before smelling:
+the block smelling rule is not listed in any rulebook.
+
+check smelling:
 	if player is in Ebekelmenc, say "Ethylene? Ethylbenzene?" instead;
 
 volume map
