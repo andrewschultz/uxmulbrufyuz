@@ -24,6 +24,8 @@ loops is a number that varies.
 
 a room has a direction called od-dir.
 
+a room has a table name called tn.
+
 volume beginning
 
 The print final score rule is not listed in for printing the player's obituary.
@@ -201,6 +203,11 @@ Aphafaja is north of Odosto.
 Odosto is unreachable.
 
 Yuyoyiea is a room. description is "It's nice and relaxed here, with nothing to do, but you miss the challenge, even if it was a grind. You feel stronger for having navigated the four lesser countries, and you realize that even if you don't know how much challenge and conflict you want, you'd like to find it in real life. You were able to see something through and look at it from all sides, even if it wasn't super complex. You wake up, a bit more ready for real life."
+
+tn of uxmulbrufyuz is table of u verbs.
+tn of aphafaja is table of a verbs.
+tn of ebekelmenc is table of e verbs.
+tn of igwivriqi is table of i verbs.
 
 chapter room descriptions
 
@@ -435,6 +442,7 @@ understand the command "abracadabra" as something new.
 understand the command "anarchy" as something new.
 
 understand "adapt" as adapting.
+understand "amass" as adapting.
 understand "anyway" as adapting.
 understand "appall" as adapting.
 understand "abracadabra" as adapting.
@@ -461,6 +469,7 @@ understand the command "expel" as something new.
 understand the command "esteem" as something new.
 understand the command "exceed" as something new.
 understand the command "exept" as something new.
+understand the command "except" as something new.
 understand the command "enerve" as something new.
 understand the command "exert" as something new.
 understand the command "emerge" as something new.
@@ -474,6 +483,7 @@ understand the command "extend" as something new.
 understand the command "entrench" as something new.
 understand the command "emcee" as something new.
 understand the command "except" as something new.
+understand the command "exempt" as something new.
 
 understand "except" as emending.
 understand "emcee" as emending.
@@ -495,6 +505,7 @@ understand "extend" as emending.
 understand "entrench" as emending.
 understand "emerge" as emending.
 understand "emend" as emending.
+understand "exempt" as emending.
 
 carry out emending:
 	if location of player is not Ebekelmenc, say "[not-here-dude of Ebekelmenc]." instead;
@@ -517,6 +528,7 @@ understand the command "instill" as something new.
 understand "imprint" as indicting.
 understand "instill" as indicting.
 understand "indict" as indicting.
+understand "insist" as indicting.
 
 carry out indicting:
 	if location of player is not Igwivriqi, say "[not-here-dude of Igwivriqi]." instead;
@@ -550,11 +562,72 @@ carry out usurping:
 	endgame-check;
 	the rule succeeds;
 
-volume parser schtuff
+book ringing up
+
+to ring-up (r - a room):
+	now r is solved;
+	add r to solverooms;
+	if debug-state is true, say "DEBUG: [tn of r].";
+	repeat through tn of r:
+		if word number 1 in the player's command is v entry and tf entry is false:
+			if tf entry is true, say "Already got this.";
+			now tf entry is true;
+			continue the action;
+	if debug-state is true, say "DEBUG: Unrecognized.";
+
+table of e verbs
+v	tf
+"emend"	false
+"egress"	false
+"excel"	false
+"expel"	false
+"esteem"	false
+"exceed"	false
+"exept"	false
+"enerve"	false
+"exert"	false
+"emerge"	false
+"eject"	false
+"embed"	false
+"eschew"	false
+"expend"	false
+"effervesce"	false
+"express"	false
+"extend"	false
+"entrench"	false
+"emcee"	false
+"except"	false
+
+table of i verbs
+v	tf
+"imprint"	false
+"instill"	false
+"indict"	false
+
+table of a verbs
+v	tf
+"adapt"	false
+"anyway"	false
+"appall"	false
+"abracadabra"	false
+"anarchy"	false
+
+table of u verbs
+v	tf
+"upchuck"	false
+"usurp"	false
+"unfurl"	false
+"unplug"	false
+
+volume parser funneling you to what to do
+
+book command notes
 
 after reading a command:
 	if the player's command matches the text " ", say "(NOTE: you only need one-word commands to get through.)[paragraph break]";
 	continue the action;
+
+book parser errors
 
 to say right-track:
 	say "[if location of player is solved]You don't need to do anything more[else]Something almost happens, but not quite. Maybe you started things wrong[end if]"
