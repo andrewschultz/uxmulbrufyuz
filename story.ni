@@ -36,6 +36,8 @@ a room has a direction called od-dir.
 
 a room has a table name called tn.
 
+a room can be traversed. a room is usually not traversed.
+
 volume beginning
 
 The print final score rule is not listed in for printing the player's obituary.
@@ -65,7 +67,16 @@ after looking (this is the where is Odosto rule):
 		if Q2 is not nothing:
 			if Q2 is visited and Q2 is not solved, say ". [Q2]'s [Q]";
 	if number of unknown directions > 0, say ". Mysterious land lies [list of unknown directions]";
-	say "."
+	say ".";
+	continue the action;
+
+after looking (this is the note if you need a clue rule):
+	if paths > 0, continue the action;
+	now location of player is traversed;
+	if number of traversed rooms is 4:
+		say "[one of]E[or]Again, e[stopping]ach room you went through makes you think you need to do something. Something unique to that room. Something in tune with its name or what's in the room. What could it be?";
+		now all rooms are not traversed;
+	continue the action;
 
 definition: a direction (called d) is unknown:
 	if the room d of location of player is nothing, no;
