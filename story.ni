@@ -37,6 +37,8 @@ when play begins:
 section for release
 
 when play begins:
+	now right hand status line is "[paths]/[starts]/[loops]";
+	now left hand status line is "[location of player] ([number of solved rooms])";
 	repeat with Q running through directions:
 		if the room Q of Odosto is not nothing, now od-dir of the room Q of Odosto is opposite of Q;
 	say "Stupid nightmares. Uxmulbrufyuz only appears at Halloween, though, after you've eaten too much candy. With no way out. Wandering around the various other places. You always felt tongue tied, like you had to do something weird or special to make it so you had no chance to get to Odosto. The place, you heard, where everything was okay. Or, well, it should be. You just needed to...well, you'd figure it when the time came.";
@@ -588,11 +590,34 @@ rule for printing a parser error when the latest parser error is the not a verb 
 	if flyby is true, say "You don't have to do much with FLYBY on--just wait in an unsolved room, or go where you need to go." instead;
 	say "You can go in any of the four basic directions[if location of player is not solved] or figure what to do right here[end if][if paths > 0]. You also have the option of a FLYBY to go through quickly[end if][if paths > 1], or SCRY/TRYSCRY to see how you've gotten through[end if]. THINK and an empty command also give slightly different clues. Or you can WAKE to quit, of course." instead;
 
-volume when play begins
+volume endgame
 
-when play begins:
-	now right hand status line is "[paths]/[starts]/[loops]";
-	now left hand status line is "[location of player] ([number of solved rooms])";
+Table of Final Question Options (continued)
+final question wording	only if victorious	topic	final response rule	final response activity
+"see which verbs you [b]GOT[r] or [b]MISSED[r]"	true	"GOT"	which-verb-y rule	whichverbing
+--	true	"MISSED"	which-verb-n rule	whichverbing
+
+whichverbing is an activity.
+
+this is the which-verb-y rule:
+	list-verbs true;
+
+this is the which-verb-n rule:
+	list-verbs false;
+
+to list-verbs (ts - a truth state):
+	repeat with Q running through rooms:
+		let Z be 0;
+		if tn of Q is empty, continue the action;
+		say "[Q] ([tn of Q]): ";
+		repeat through tn of Q:
+			if tf entry is ts:
+				increment Z;
+				say "[if Z > 1], [end if][v entry]";
+		if ts is false:
+			say "[if Z is 0]nothing. Well done![else] ([Z] of [number of rows in tn of Q]).[end if]";
+		else:
+			say "[if Z is number of rows in tn of Q]nothing. Well done![else] ([Z] of [number of rows in tn of Q]).[end if]"
 
 volume quick tests
 
