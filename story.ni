@@ -366,8 +366,38 @@ understand "about" as abouting.
 
 carry out abouting:
 	say "[i]Ux[r] was the original name for [i]The Problems Compound[r], my 2015 IFComp entry. The game shifted enough I had to ditch the name, but when Anssi Raisanen mentioned a title with only u's as vowels in his 2017 IFComp prediction, I laughed a bit, then wondered if I could dust the name off and do something with it. The result is this, which I submitted to the 2017 EctoComp Petite Mort division.";
+	say "[line break]Six years later, Keltena notified me that this game's IFDB clashed with [i]The Problems Compound[r], and I realized I'd copied the directory straight over instead of making a new project, and I had some bugs and features to roll up. So I got a new release out!";
 	say "[line break]If you're confused what to do, just type anything. A list of what you can do will pop up on any verb the game doesn't understand. Typing nothing gives a clue, as does [b]THINK[r].";
+	say "[line break][b]CREDITS[r] shows people who helped this come to be, or be better.";
 	the rule succeeds;
+
+chapter creditsing
+
+creditsing is an action out of world.
+
+understand the command "credits" as something new.
+
+understand "credits" as creditsing.
+
+carry out creditsing:
+	say "Thanks to Duncan Bowsman and J.J. Gues for hosting EctoComp and, later, Ruber Eaglenest.";
+	say "[line break]Thanks to Keltena for pointing out the clashing IFIDs this had with another game.";
+	say "[line break]Thanks to David Welbourn for writing a (free) walkthrough at http://www.plover.net/~davidw/sol/u/uxmul17.html. If you can, support him on Patreon!";
+	the rule succeeds;
+
+chapter xyzzying
+
+xyzzying is an action out of world.
+
+understand the command "xyzzy" as something new.
+
+understand "xyzzy" as xyzzying.
+
+carry out xyzzying:
+	say "Nothing happens. You also try [b][if player is in aphafaja]ZABBA[else if player is in Ebekelmenc]DEFFE[else if player is in Igwivriqi]HIJJI[else if player is in Odosto]NOPPO[else]TUVVU[end if][r], which seems right here. But, again, nothing.";
+	the rule succeeds;
+
+volume options
 
 chapter flybying
 
