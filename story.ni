@@ -360,7 +360,7 @@ understand "about" as abouting.
 
 carry out abouting:
 	say "[i]Ux[r] was the original name for [i]The Problems Compound[r], my 2015 IFComp entry. The game shifted enough I had to ditch the name, but when Anssi Raisanen mentioned a title with only u's as vowels in his 2017 IFComp prediction, I laughed a bit, then wondered if I could dust the name off and do something with it. The result is this, which I submitted to the 2017 EctoComp Petite Mort division.";
-	say "[line break]If you're confused what to do, just type anything. A list of what you can do will pop up on any verb the game doesn't understand. Typing nothing gives a clue, as does [i]THINK[r].";
+	say "[line break]If you're confused what to do, just type anything. A list of what you can do will pop up on any verb the game doesn't understand. Typing nothing gives a clue, as does [b]THINK[r].";
 	the rule succeeds;
 
 chapter flybying
@@ -385,7 +385,7 @@ understand the command "whyfly" as something new.
 understand "whyfly" as whyflying.
 
 carry out whyflying:
-	say "[b]FLYBY[r] is [if flyby is true]already[else]now[end if] off. You'll have to solve rooms manually. ";
+	say "[b]FLYBY[r] is [if flyby is true]already[else]now[end if] off. You'll have to solve rooms manually, until you turn the option on with [b]FLYBY[r] again.";
 	the rule succeeds;
 
 
@@ -421,14 +421,25 @@ understand "scrytry" as scrying.
 
 carry out scrying:
 	let scry be 0;
+	let last-row be -1;
+	let count be 0;
 	repeat through table of end lists:
 		if done entry is true:
-			if scry > 0 and remainder after dividing scry by 6 is 0, say "[line break]";
-			if remainder after dividing scry by 6 is not 0, say ", ";
-			say "[pathy entry]";
+			if scry is 0:
+				say "Ways you've found to Odosto:[fixed letter spacing]";
+			let this-row be count / 6;
+			if this-row > last-row:
+				now last-row is this-row;
+				say "[line break]";
+			else:
+				say ", ";
+			say "[pathy entry in upper case]";
 			increment scry;
+		increment count;
 	if scry is 0:
 		say "You haven't found any ways to Odosto yet.";
+	else:
+		say "[variable letter spacing][line break][scry] total...";
 	the rule succeeds;
 
 volume moving
@@ -718,19 +729,6 @@ test us with "z/e/e/e/z/e/n/w/z/n/w/n/z/n/e/s/z/s/s/e/z/s/w/w".
 test is with "s/s/e/s/s/s/w/n/s/w/w/w/s/w/s/e/s/n/e/e/s/n/n/w".
 test as with "e/e/e/n/e/e/s/s/e/n/w/s/e/n/n/n/e/w/n/e/e/w/s/w".
 test es with "n/w/n/n/n/w/w/s/n/e/s/w/n/e/n/e/n/s/e/n/n/s/s/s".
-
-chapter flyying
-
-flyying is an action applying to nothing.
-
-understand the command "flyy" as something new.
-
-understand "flyy" as flyying.
-
-carry out flyying:
-	now flyby is true;
-	say "Flyby forced to true.";
-	the rule succeeds;
 
 chapter eiting
 
