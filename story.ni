@@ -49,12 +49,13 @@ when play begins:
 	wfak;
 
 after looking (this is the where is Odosto rule):
-	say "Odosto is to the [od-dir of location of player]. But you feel it pushing you back";
+	if player is not in yuyoyiea, say "Odosto is to the [od-dir of location of player]. But you feel it pushing you back";
 	repeat with Q running through directions:
 		let Q2 be the room Q of location of player;
 		if Q2 is not nothing:
 			if Q2 is visited and Q2 is not solved, say ". [Q2]'s [Q]";
 	if number of unknown directions > 0, say ". Mysterious land lies [list of unknown directions]";
+	now location of player is solved;
 	say "."
 
 definition: a direction (called d) is unknown:
@@ -111,18 +112,16 @@ check requesting the score:
 
 book attacking
 
-instead of attacking:
+the block attacking rule is not listed in any rulebook.
+
+check attacking:
 	if player is in Aphafaja, say "That should work, but then, you can't. You're not violent." instead;
-	if player is in Ebekelmenc, say "Enfeeblement! Every enzyme emmeshed! ";
+	if player is in Ebekelmenc, say "Enfeeblement! Every enzyme enmeshed! ";
 	if player is in Igwivriqi, say "Instinct! ";
 	if player is in Uxmulbrufyuz, say "Un-fun! ";
 	say "This isn't the right place to attack. Even in the right place to attack, it won't work." instead; [okdup]
 
 book waiting
-
-to ring-up (r - a room):
-	now r is solved;
-	add r to solverooms;
 
 check waiting:
 	if flyby is true:
@@ -225,7 +224,7 @@ chapter room descriptions
 
 description of Uxmulbrufyuz is "Unburnt, unruly undrunk urnfuls. Unsunny, unfussy upbursts uprush.".
 
-description of Aphafaja is "Alfalfa amalgam. Abysmal ashram. Abstact aardvark. Award awash. Arrant arcana. Awkward archway, almanac, acanthas, ashplant, adamant avatar. Aargh! Alack! Alarm!".
+description of Aphafaja is "Alfalfa amalgam. Abysmal ashram. Abstract aardvark. Award awash. Arrant arcana. Awkward archway, almanac, acanthas, ashplant, adamant avatar. Aargh! Alack! Alarm!".
 
 description of Ebekelmenc is "Eek! Eel. Even edges ebbed. Elect egrets. Eleven Embers. Entremets ensemble. Esses enmesh entrees. Epergnes, essences. Elderly exercycle. Extreme eyelets. Element emblems. Everymen's etrennes. Elderberry excrescence. Extremely expressly evergreen. Endlessly ensteeped, encrypted. Emergency! Emergency!".
 
@@ -389,9 +388,9 @@ after going when flyby is true:
 this-solve is a truth state that varies.
 
 after looking when auto-solve is true:
-	say "Yeah, yeah. You've been here, before. You know what to do, and you do it.";
+	unless location of player is odosto or location of player is yuyoyiea, say "Yeah, yeah. You've been here, before. You know what to do, and you do it.";
 	ring-up location of player;
-	if debug-state is true, say "SOLVED: [solverooms].";
+	if debug-state is true, say "DEBUG: SOLVED: [solverooms].";
 	endgame-check;
 	if number of solved rooms is 0, the rule succeeds;
 	continue the action;
@@ -412,17 +411,12 @@ carry out scrying:
 	let scry be 0;
 	repeat through table of end lists:
 		if done entry is true:
-			if scry is 0:
-				say "Ways to Odosto (in alphabetical order):[line break][fixed letter spacing]";
-			else if remainder after dividing scry by 6 is 0:
-				say "[line break]";
+			if scry > 0 and remainder after dividing scry by 6 is 0, say "[line break]";
 			if remainder after dividing scry by 6 is not 0, say ", ";
 			say "[pathy entry]";
 			increment scry;
 	if scry is 0:
 		say "You haven't found any ways to Odosto yet.";
-	else:
-		say "[variable letter spacing]";
 	the rule succeeds;
 
 volume moving
@@ -673,7 +667,7 @@ rule for printing a parser error when the latest parser error is the not a verb 
 			if character number 1 in the player's command is "i", say "[so-right-track]." instead;
 			if the player's command matches the text "i", say "[right-track]." instead;
 	if flyby is true, say "You don't have to do much with FLYBY on--just wait in an unsolved room, or go where you need to go." instead;
-	say "You can go in any of the four basic directions[if location of player is not solved] or figure what to do right here[end if][if paths > 0]. You also have the option of a FLYBY to go through quickly[end if][if paths > 1], or SCRY/TRYSCRY to see how you've gotten through[end if]. THINK and an empty command also give slightly different clues. Or you can WAKE to quit, of course." instead;
+	say "In this dream world, you can't interact much. You mostly need to go in any of the four basic directions[if location of player is not solved] or figure what to do right here[end if][if paths > 0]. You also have the option of a [b]FLYBY[r] to go through quickly[end if][if paths > 1], or [b]SCRY[r]/[b]TRYSCRY[r] to see how you've gotten through[end if]. [b]THINK[r] and an empty command also give slightly different clues. Or you can [b]WAKE[r] to quit, of course." instead;
 
 volume endgame
 
