@@ -14,19 +14,23 @@ include Trivial Niceties by Andrew Schultz.
 
 include Old School Verb Total Carnage by Andrew Schultz.
 
-include basic screen effects by Emily Short.
+include Bold Final Rows by Andrew Schultz.
+
+include Basic Screen Effects by Emily Short.
 
 section testing module - not for release
 
 include Uxmulbrufyuz Tests by Andrew Schultz.
 
-volume variables
+volume variables and properties
 
 paths is a number that varies.
 
 starts is a number that varies.
 
 loops is a number that varies.
+
+chapter room properties
 
 a room has a direction called od-dir.
 
@@ -71,7 +75,9 @@ definition: a direction (called d) is unknown:
 
 volume verbs
 
-instead of waking up:
+the block waking up rule is not listed in any rulebook.
+
+check waking up:
 	say "Well, that's one way to rid yourself of the whole mess.";
 	if paths is 0:
 		say "[line break]What a weird place. And places. You didn't get anywhere, but sometimes, it's good just to admit you can't and move on with life.";
@@ -298,9 +304,9 @@ to fake-end:
 					move the player to Yuyoyiea;
 					end the story finally saying "More challenges";
 					continue the action;
-	say "Try again?";
-	if paths is 1, say "[line break](Oh! By the way, you won't have to type in all those commands. You can just [bold type]FLYBY[roman type] and solve whatever room you walk next to, and [b]WHYFLY[r] will turn this off. Waiting will solve your current room.)[paragraph break]";
+	if paths is 1, say "[line break](Oh! By the way, you won't have to type in all those commands. You can just [bold type]FLYBY[roman type] and solve whatever room you walk next to, and to skip the verification to continue, and [b]WHYFLY[r] will turn this off. Waiting will solve your current room.)[paragraph break]";
 	if paths is 2, say "[line break](Oh! Another verb: [bold type]SCRYTRY[roman type] or [bold type]SCRY[roman type] will show you the ways you've been through.)[paragraph break]";
+	say "Try again?";
 	if the player yes-consents:
 		reset-game;
 	else:
@@ -354,7 +360,7 @@ Uxmulbrufyuz	Ebekelmenc	Igwivriqi	Aphafaja	false	3	"ueia"
 Uxmulbrufyuz	Igwivriqi	Aphafaja	Ebekelmenc	false	4	"uiae"
 Uxmulbrufyuz	Igwivriqi	Ebekelmenc	Aphafaja	false	5	"uiea"
 
-volume odd verbs
+volume meta verbs
 
 chapter abouting
 
