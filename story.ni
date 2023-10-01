@@ -16,6 +16,12 @@ include Old School Verb Total Carnage by Andrew Schultz.
 
 include basic screen effects by Emily Short.
 
+section testing module - not for release
+
+include Uxmulbrufyuz Tests by Andrew Schultz.
+
+volume variables
+
 paths is a number that varies.
 
 starts is a number that varies.
@@ -720,15 +726,6 @@ to list-verbs (ts - a truth state):
 			say "[if Z is 0]nothing. Well done![else] ([Z] of [number of rows in tn of Q]).[end if]";
 		else:
 			say "[if Z is number of rows in tn of Q]nothing. Well done![else] ([Z] of [number of rows in tn of Q]).[end if]"
-
-volume quick tests
-
-test w with "rules on/unfurl/e/adapt/e/expel/e/indict/flyby".
-
-test us with "z/e/e/e/z/e/n/w/z/n/w/n/z/n/e/s/z/s/s/e/z/s/w/w".
-test is with "s/s/e/s/s/s/w/n/s/w/w/w/s/w/s/e/s/n/e/e/s/n/n/w".
-test as with "e/e/e/n/e/e/s/s/e/n/w/s/e/n/n/n/e/w/n/e/e/w/s/w".
-test es with "n/w/n/n/n/w/w/s/n/e/s/w/n/e/n/e/n/s/e/n/n/s/s/s".
 
 chapter eiting
 
