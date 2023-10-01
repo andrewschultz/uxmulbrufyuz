@@ -55,7 +55,6 @@ after looking (this is the where is Odosto rule):
 		if Q2 is not nothing:
 			if Q2 is visited and Q2 is not solved, say ". [Q2]'s [Q]";
 	if number of unknown directions > 0, say ". Mysterious land lies [list of unknown directions]";
-	now location of player is solved;
 	say "."
 
 definition: a direction (called d) is unknown:
@@ -294,7 +293,7 @@ to fake-end:
 					end the story finally saying "More challenges";
 					continue the action;
 	say "Try again?";
-	if paths is 1, say "[line break](Oh! By the way, you won't have to type in all those commands. You can just [bold type]FLYBY[roman type] and solve whatever room you walk next to. Waiting will solve your current room.)[paragraph break]";
+	if paths is 1, say "[line break](Oh! By the way, you won't have to type in all those commands. You can just [bold type]FLYBY[roman type] and solve whatever room you walk next to, and [b]WHYFLY[r] will turn this off. Waiting will solve your current room.)[paragraph break]";
 	if paths is 2, say "[line break](Oh! Another verb: [bold type]SCRYTRY[roman type] or [bold type]SCRY[roman type] will show you the ways you've been through.)[paragraph break]";
 	if the player yes-consents:
 		reset-game;
@@ -360,8 +359,8 @@ understand the command "about" as something new.
 understand "about" as abouting.
 
 carry out abouting:
-	say "Ux was the original name for The Problems Compound, my 2015 IFComp entry. The game shifted enough I had to ditch the name, but when Anssi Raisanen mentioned a title with only u's as vowels in his 2017 IFComp prediction, I laughed a bit, then wondered if I could dust the name off and do something with it. The result is this, which I submitted to the 2017 EctoComp Petite Mort division.";
-	say "[line break]If you're confused what to do, just type anything. A list of what you can do will pop up on any verb the game doesn't understand. Typing nothing gives a clue, as does THINKing.";
+	say "[i]Ux[r] was the original name for [i]The Problems Compound[r], my 2015 IFComp entry. The game shifted enough I had to ditch the name, but when Anssi Raisanen mentioned a title with only u's as vowels in his 2017 IFComp prediction, I laughed a bit, then wondered if I could dust the name off and do something with it. The result is this, which I submitted to the 2017 EctoComp Petite Mort division.";
+	say "[line break]If you're confused what to do, just type anything. A list of what you can do will pop up on any verb the game doesn't understand. Typing nothing gives a clue, as does [i]THINK[r].";
 	the rule succeeds;
 
 chapter flybying
@@ -373,9 +372,22 @@ understand the command "flyby" as something new.
 understand "flyby" as flybying.
 
 carry out flybying:
-	now flyby is whether or not flyby is false;
-	say "[if flyby is true]You see how to fly by rooms as needed. If you start over again in Uxmulbrufyuz, you can just wait to solve it. Otherwise, the next room you go to, you solve as you did before[else]Flyby is now off. You'll have to solve rooms manually[end if].";
+	say "You [if flyby is true]already [end if]see how to fly by rooms as needed. If you start over again in Uxmulbrufyuz, you can just wait to solve it. Otherwise, the next room you go to, you solve as you did before.";
+	now flyby is true;
 	the rule succeeds;
+
+chapter whyflying
+
+whyflying is an action out of world.
+
+understand the command "whyfly" as something new.
+
+understand "whyfly" as whyflying.
+
+carry out whyflying:
+	say "[b]FLYBY[r] is [if flyby is true]already[else]now[end if] off. You'll have to solve rooms manually. ";
+	the rule succeeds;
+
 
 auto-solve is a truth state that varies.
 
